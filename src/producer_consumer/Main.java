@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class Main {
 
-    static int N_CONSUMERS = 2;
+    static int N_CONSUMERS = 8;
     static int N_PRODUCERS = 5;
 
     public static void main(String[] args) throws InterruptedException {
@@ -37,7 +37,9 @@ public class Main {
         //
 
         // Wait for a while
-        Thread.sleep(3000);
+        Thread.sleep(10000);
+
+        queue.stop();
 
         // Close the deal
         for (Thread thread : threads) {

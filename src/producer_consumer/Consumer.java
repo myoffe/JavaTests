@@ -29,12 +29,15 @@ public class Consumer implements Runnable {
 
         Random rand = new Random();
 
-        while  (!Thread.interrupted()) {
-            int data = queue.read();
+        try {
+            while  (!Thread.interrupted()) {
+                int data = queue.read();
 
-            try {
-                Thread.sleep(rand.nextInt(1000));
-            } catch (InterruptedException e) { break; }
+                int sleepDuration = rand.nextInt(1000) + 500;
+                Thread.sleep(sleepDuration);
+            }
+        } catch (InterruptedException e) {
+            System.out.format("%d Interrupted\n", Thread.currentThread().getId());
         }
     }
 }

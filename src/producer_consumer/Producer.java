@@ -31,12 +31,16 @@ public class Producer implements Runnable {
 
         Random rand = new Random();
 
-        while  (!Thread.interrupted()) {
-            int data = rand.nextInt(100);
-            queue.write(data);
-            try {
-                Thread.sleep(rand.nextInt(1000));
-            } catch (InterruptedException e) { break; }
+        try {
+            while  (!Thread.interrupted()) {
+                int data = rand.nextInt(100);
+                queue.write(data);
+
+                int sleepDuration = rand.nextInt(1000) + 500;
+                Thread.sleep(sleepDuration);
+            }
+        } catch (InterruptedException e) {
+            System.out.format("%d Interrupted\n", Thread.currentThread().getId());
         }
     }
 }
